@@ -1,0 +1,501 @@
+<app-header (requestMeeting)="openMeetingForm()"></app-header>
+
+<div class="hero-section position-relative overflow-hidden h-lg-100">
+  <img [src]="landingImg" class="img-fluid w-100 hero-image" alt="Landing_image" height="684" width="100">
+  <div class="hero-text position-absolute text-center text-light z-2">
+    <h1>Your Trusted Partner for Dubai</h1>
+    <h1>Real Estate Solutions</h1>
+    <div class=" p-4">
+
+      <div class="btn-group ms-5 d-flex justify-content-center" role="group">
+        @for (category of categories; track category) {
+        <button class="btn btn-light" [class.rounded-start-pill]="category === 'Any'"
+          [class.rounded-end-pill]="category === 'Commercial'" [class.border-start]="category !== 'Any'"
+          [class.active]="selectedCategory === category" (click)="selectCategory(category)">
+          {{ category }}
+        </button>
+        }
+      </div>
+
+      <div class="input-group searchInput mt-4">
+        <span class="input-group-text rounded-start-pill bg-white border-end-0">
+          <i class="bi bi-search text-muted"></i>
+        </span>
+        <input type="text" class="form-control shadow-none border-0" placeholder="City, community or building">
+
+        <button class="btn dropdown-toggle property-dropdown border bg-light" type="button" data-bs-toggle="dropdown">
+          {{ selectedPropertyType }}
+        </button>
+
+        <ul class="dropdown-menu">
+          @for (type of propertyTypes; track type) {
+          <li>
+            <span class="dropdown-item" (click)="selectPropertyType(type)">
+              {{ type }}
+            </span>
+          </li>
+          }
+        </ul>
+        <span class="input-group-btn">
+          <button class="btn btn-search border-0 rounded-end-pill" type="button"><i class="fa fa-search fa-fw"></i>
+            Search</button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section class="developer-section py-5">
+  <div class="container text-center">
+    <h1 class="fw-bold mt-5 mb-3">Developer we work with us</h1>
+    <p class="text-muted mb-5">
+      Explore the Dubai real estate market thoroughly, including pricing trends,
+      transaction histories, and community insights, to empower your investment decisions.
+    </p>
+    <!-- Carousel -->
+
+    <app-carousel [data]="carouselData" [clientReview]="false"></app-carousel>
+
+    <!-- <div id="developerCarousel" class="carousel slide" data-bs-ride="carousel">
+
+      <div class="carousel-inner">
+
+        @for (slide of developerSlides; track $index) {
+        <div class="carousel-item" [class.active]="$index === 0">
+          <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap">
+            @for (logo of slide; track logo) {
+            <img [src]="logo" class="dev-logo" />
+            }
+          </div>
+        </div>
+        }
+
+      </div>
+
+
+      <button class="carousel-control-prev dev-arrow" type="button" data-bs-target="#developerCarousel"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button class="carousel-control-next dev-arrow" type="button" data-bs-target="#developerCarousel"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
+    </div> -->
+
+  </div>
+</section>
+
+
+<section class="choose-section position-relative">
+
+  <div>
+    <img [src]="whyChooseUsImg" class="img-fluid w-100 investment-image" alt="Landing_image" height="684px">
+  </div>
+
+
+  <div class="overlay">
+    <div class="container position-relative content-area">
+      <h2 class="text-center text-white fw-bold my-5">Why Choose Us?</h2>
+
+      <div class="row text-white p-4">
+        <div class="col-md-3 mb-5">
+          <h5 class="fw-bold">Seamless Access Across Dubai:</h5>
+          <ul>
+            <li>Connected to highways, metro lines & key landmarks.</li>
+            <li>Reduces commute time & increases tenant appeal.</li>
+            <li>Strong investment returns.</li>
+          </ul>
+
+          <h5 class="fw-bold mt-5 pt-5">Luxury Ready-to-Move Homes</h5>
+          <ul>
+            <li>Fully furnished with premium finishes.</li>
+            <li>Ideal for immediate rental income.</li>
+            <li>Attractive to short & long-term tenants.</li>
+          </ul>
+        </div>
+
+
+        <div class="col-md-6 mb-2 mt-3 pt-4 text-center">
+          <h4 class="fw-bold text-center">Contact us</h4>
+
+          <form class="mt-1 px-4" [formGroup]="contactForm" (ngSubmit)="submitContactForm()">
+
+            <div class="contactUs-input-wrapper">
+              <div class="input-group contactUsCustom-input">
+                <span class="input-group-text">
+                  <i class="bi bi-person text-light"></i>
+                </span>
+                <input type="text" class="form-control noShadow" placeholder="Your name" formControlName="name"
+                  [ngClass]="{
+                    'is-valid':
+                      contactFormControls['name']?.dirty &&
+                      contactFormControls['name']?.valid,
+                    'is-invalid custom-input-error':
+                      (contactFormControls['name'].dirty ||
+                        contactFormControls['name'].touched) &&
+                      contactFormControls['name'].invalid,
+                  }">
+              </div>
+
+              @if (
+              (contactFormControls["name"].dirty ||
+              contactFormControls["name"].touched) &&
+              contactFormControls["name"].invalid
+              ) {
+              @if (contactFormControls["name"].hasError("required")) {
+              <small class="text-light ms-2">
+                Name is required!
+              </small>
+              }
+
+              @if (contactFormControls["name"].hasError("minlength")) {
+              <small class="text-light ms-2">
+                Name must be at least 2 characters long!
+              </small>
+              }
+              }
+
+            </div>
+            <!-- Email -->
+            <div class="contactUs-input-wrapper">
+              <div class="input-group contactUsCustom-input">
+                <span class="input-group-text">
+                  <i class="bi bi-envelope text-light"></i>
+                </span>
+                <input type="email" class="form-control noShadow" placeholder="Your e-mail" formControlName="email"
+                  [ngClass]="{
+                    'is-valid':
+                      contactFormControls['email']?.dirty &&
+                      contactFormControls['email']?.valid,
+                    'is-invalid custom-input-error':
+                      (contactFormControls['email'].dirty ||
+                        contactFormControls['email'].touched) &&
+                      contactFormControls['email'].invalid,
+                  }">
+              </div>
+              @if (
+              (contactFormControls["email"].dirty ||
+              contactFormControls["email"].touched) &&
+              contactFormControls["email"].invalid
+              ) {
+              @if (contactFormControls["email"].hasError("required")) {
+              <small class="text-light ms-2">
+                Email is required!
+              </small>
+              }
+
+              @if (contactFormControls["email"].hasError("email")) {
+              <small class="text-light ms-2">
+                Invalid email!
+              </small>
+              }
+              }
+            </div>
+            <!-- PhoneCode -->
+
+            <div class="input-group contactUsCustom-input">
+              <lib-country-list class="CountryDropdown w-100" [selectedCountryConfig]="selectedCountryConfig"
+                [countryListConfig]="CountryListConfig" [selectedCountryCode]="selectedCountryCode"
+                (onCountryChange)="onSelectionCountry($event)"></lib-country-list>
+            </div>
+
+            <!-- Phone -->
+            <div class="contactUs-input-wrapper">
+              <div class="input-group contactUsCustom-input">
+                <span class="input-group-text">
+                  <i class="bi bi-telephone text-light"></i>
+                </span>
+                <input type="tel" class="form-control noShadow" placeholder="Mobile Number" formControlName="phone"
+                  [ngClass]="{
+                    'is-valid':
+                      contactFormControls['phone']?.dirty &&
+                      contactFormControls['phone']?.valid,
+                    'is-invalid custom-input-error':
+                      (contactFormControls['phone'].dirty ||
+                        contactFormControls['phone'].touched) &&
+                      contactFormControls['phone'].invalid,
+                  }">
+              </div>
+
+              @if (
+              (contactFormControls["phone"].dirty ||
+              contactFormControls["phone"].touched) &&
+              contactFormControls["phone"].invalid
+              ) {
+              @if (contactFormControls["phone"].hasError("required")) {
+              <small class="text-light phoneField">
+                Phone number is required!
+              </small>
+              }
+              @if (contactFormControls["phone"].hasError('invalidPhone')) {
+              <small class="text-light ms-5">
+                Invalid Phone number!
+              </small>
+              }
+              }
+            </div>
+
+
+            <!-- Submit -->
+            @if(!loader()){
+            <button type="submit" [disabled]="contactForm.invalid" class=" btn contact-btn  px-5 py-2 mt-3">
+              <i class="bi bi-telephone me-2"></i> Contact us
+            </button>
+            }@else {
+            <button type="button" class=" btn contact-btn  px-5 py-2 mt-3">
+              <div class="spinner-border spinner-border-sm" role="status"></div>
+            </button>
+
+            }
+
+          </form>
+
+        </div>
+
+
+        <div class="col-md-3 mb-5">
+          <h5 class="fw-bold">Future-Ready Living Spaces</h5>
+          <ul>
+            <li>Smart-home technology & modern infrastructure.</li>
+            <li>Located in Dubai’s fastest-growing districts.</li>
+            <li>Boosts long-term property value.</li>
+          </ul>
+
+          <h5 class="fw-bold mt-5 pt-5">Everything You Need Nearby</h5>
+          <ul>
+            <li>Close to malls, hospitals & lifestyle hubs.</li>
+            <li>Effortless day-to-day living.</li>
+            <li>Enhances rental demand & appreciation.</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="clientReview-section py-5">
+  <div class="container text-center">
+    <h1 class="fw-bold mt-5 mb-3">Client Reviews</h1>
+    <p class="text-muted mb-5">
+      Read verified client reviews showcasing transaction transparency, timely communication, negotiation wins, and
+      long-term portfolio growth
+      <br />real stories that validate our expertise and investor trust.
+    </p>
+    <!-- Carousel -->
+    <div id="clientReviewCarousel" class="carousel slide" data-bs-ride="carousel">
+
+      <div class="carousel-inner">
+        <app-carousel [data]="customerReviewData" [clientReview]="true"></app-carousel>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<div class="investment-section position-relative overflow-hidden">
+  <img [src]="investmentImg" class="img-fluid w-100 investment-image" alt="Landing_image" height="684px">
+  <div class="investment-text position-absolute text-center text-light z-2">
+    <h1 class="text-start">Your Dubai Investment</h1>
+    <h1 class="text-start">Starts Here</h1>
+    <p class="text-start">Explore high-growth communities, transparent pricing insights, and expert-backed
+      <br />opportunities designed to
+      maximize your long-term returns.
+    </p>
+    <div class="mt-5 text-start">
+      <button #openMeeting class="btn btn-request text-light rounded-3 px-3 py-2" type="button" data-bs-toggle="modal"
+        data-bs-target="#requestMeetingModal">
+        <i class="bi bi-briefcase me-2"></i>Request of Meeting
+      </button>
+      <span class="ms-3">
+        Or <a href="tel:+971 58 157 7284" class="text-decoration-none text-white"><i
+            class="bi bi-telephone-fill ms-3 me-1"></i> +971 58 157 7284 </a>
+      </span>
+    </div>
+  </div>
+
+</div>
+
+<div class="pt-5">
+  <app-footer></app-footer>
+</div>
+
+
+<!-- Modal -->
+<div class="modal" id="requestMeetingModal" tabindex="-1" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content text-white">
+      <div class="modal-header border-0">
+        <h5 class="modal-title w-100 text-center">Reach out to us Today!</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" #closeBtn
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- request-meeting.component.html -->
+        <div>
+          <form class="p-3" [formGroup]="meetingForm" (ngSubmit)="submitForm()">
+
+            <!-- Name -->
+            <div class="mb-3">
+              <label class="form-label">Name<span>*</span></label>
+              <input type="text" class="form-control custom-input" placeholder="Enter name here..."
+                formControlName="name" [ngClass]="{
+                    'is-valid':
+                      requestMeetingFormControls['name']?.dirty &&
+                      requestMeetingFormControls['name']?.valid,
+                    'is-invalid custom-input-error':
+                      (requestMeetingFormControls['name'].dirty ||
+                        requestMeetingFormControls['name'].touched) &&
+                      requestMeetingFormControls['name'].invalid,
+                  }">
+              @if (
+              (requestMeetingFormControls["name"].dirty ||
+              requestMeetingFormControls["name"].touched) &&
+              requestMeetingFormControls["name"].invalid
+              ) {
+              @if (requestMeetingFormControls["name"].hasError("required")) {
+              <div class="text-danger fs-12 ps-1 mt-1">
+                Name is required!
+              </div>
+              }
+
+              @if (requestMeetingFormControls["name"].hasError("minlength")) {
+              <div class="text-danger fs-12 ps-1 mt-1">
+                Name must be at least 2 characters long!
+              </div>
+              }
+              }
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label class="form-label">Email<span>*</span></label>
+              <input type="email" class="form-control custom-input" placeholder="Enter email here..."
+                formControlName="email" [ngClass]="{
+                    'is-valid':
+                      requestMeetingFormControls['email']?.dirty &&
+                      requestMeetingFormControls['email']?.valid,
+                    'is-invalid custom-input-error':
+                      (requestMeetingFormControls['email'].dirty ||
+                        requestMeetingFormControls['email'].touched) &&
+                      requestMeetingFormControls['email'].invalid,
+                  }">
+              @if (
+              (requestMeetingFormControls["email"].dirty ||
+              requestMeetingFormControls["email"].touched) &&
+              requestMeetingFormControls["email"].invalid
+              ) {
+              @if (requestMeetingFormControls["email"].hasError("required")) {
+              <div class="text-danger fs-12 ps-1 mt-1">
+                Email is required!
+              </div>
+              }
+
+              @if (requestMeetingFormControls["email"].hasError("email")) {
+              <div class="text-danger fs-12 ps-1 mt-1">
+                Invalid email!
+              </div>
+              }
+              }
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-3">
+              <label class="form-label">Phone No.<span>*</span></label>
+              <div class="inner-addon left-addon">
+                <div class="innerText">
+                  <lib-country-list class="CountryDropdown" [selectedCountryConfig]="selectedPhoneConfig"
+                    [countryListConfig]="phoneListConfig" [selectedCountryCode]="selectedCountryCode"
+                    (onCountryChange)="onCountryChange($event)"></lib-country-list>
+                </div>
+                <input type="tel" class="form-control custom-input" placeholder="Enter phone number"
+                  formControlName="phone" [ngClass]="{
+                    'is-valid':
+                      requestMeetingFormControls['phone']?.dirty &&
+                      requestMeetingFormControls['phone']?.valid,
+                    'is-invalid custom-input-error':
+                      (requestMeetingFormControls['phone'].dirty ||
+                        requestMeetingFormControls['phone'].touched) &&
+                      requestMeetingFormControls['phone'].invalid,
+                  }">
+              </div>
+              @if (
+              (requestMeetingFormControls["phone"].dirty ||
+              requestMeetingFormControls["phone"].touched) &&
+              requestMeetingFormControls["phone"].invalid
+              ) {
+              @if (requestMeetingFormControls["phone"].hasError("required")) {
+              <div class="text-danger fs-12 ps-1 mt-1">
+                Phone number is required!
+              </div>
+              }
+              @if (requestMeetingFormControls["phone"].hasError('invalidPhone')) {
+              <div class="text-danger fs-12 ps-1 mt-1">
+                Invalid Phone number!
+              </div>
+              }
+              }
+            </div>
+
+            <!-- Date & Time -->
+            <div class="row">
+              <div class="col-6 mb-3">
+                <label class="form-label">Date<span>*</span></label>
+                <input type="date" class="form-control custom-input" formControlName="date" [min]="todaysDate">
+                @if (
+                (requestMeetingFormControls["date"].dirty ||
+                requestMeetingFormControls["date"].touched) &&
+                requestMeetingFormControls["date"].invalid
+                ) {
+                @if (requestMeetingFormControls["date"].hasError("required")) {
+                <div class="text-danger fs-12 ps-1 mt-1">
+                  Date is required!
+                </div>
+                }
+                }
+              </div>
+
+              <div class="col-6 mb-3">
+                <label class="form-label">Time<span>*</span></label>
+                <input type="time" class="form-control custom-input" formControlName="time">
+                @if (
+                (requestMeetingFormControls["time"].dirty ||
+                requestMeetingFormControls["time"].touched) &&
+                requestMeetingFormControls["time"].invalid
+                ) {
+                @if (requestMeetingFormControls["time"].hasError("required")) {
+                <div class="text-danger fs-12 ps-1 mt-1">
+                  Time is required!
+                </div>
+                }
+                }
+              </div>
+            </div>
+
+            <!-- Submit -->
+            @if(!loader()){<button type="submit" class="btn submit-btn w-100 mt-4" [disabled]="meetingForm.invalid">
+              Submit
+            </button>
+            }
+            @else {
+            <button type="button" class="btn submit-btn w-100 mt-4">
+              <div class="spinner-border spinner-border-sm" role="status"></div>
+            </button>
+
+            }
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

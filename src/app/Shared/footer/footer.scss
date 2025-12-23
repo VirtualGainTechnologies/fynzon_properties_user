@@ -1,0 +1,40 @@
+.iconBgColor {
+  background-color: #8c0600;
+}
+
+.roundedIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-request {
+  background-color: #8c0600;
+}
+
+.socialIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8c0600;
+}
+
+.footer-bar {
+  display: flex;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 768px) {
+  .icons-box {
+    width: 100%;
+    justify-content: center;
+  }
+}

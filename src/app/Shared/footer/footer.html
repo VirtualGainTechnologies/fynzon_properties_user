@@ -1,0 +1,85 @@
+<div class="container-fluid m-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-12 mt-4">
+        <a href="#">
+          <img [src]="fynzonProprty" alt="Fynzon Property Logo" height="40" />
+        </a>
+
+        <p class="my-3">
+          42- Devika business center,<br />2nd floor, Aspin commercial tower,<br />
+          Shaikh Zayed road, Dubai.
+        </p>
+
+        <div class="mt-4">
+          <p class="d-flex align-items-center">
+            <i class="bi bi-envelope-fill me-2 iconBgColor roundedIcon text-light"></i>
+            <a class="text-decoration-none text-dark" href="mailto:gm@fynzonproperties.ae">
+              gm&#64;fynzonproperties.ae
+            </a>
+          </p>
+          <p class="d-flex align-items-center">
+            <i class="bi bi-telephone-fill me-2 iconBgColor roundedIcon text-light"></i>
+            <a class="text-decoration-none text-dark" href="tel:+971 58 157 7284">+971 58 157 7284</a>
+          </p>
+        </div>
+
+        <button class="btn btn-request text-light rounded-3 mt-4 px-4 py-2">
+          <span class="me-3">ORN:12345</span>
+          <span>BRN:987654</span>
+        </button>
+      </div>
+
+      <div class="col-lg-2 col-md-4 col-6 mt-5">
+        <h6>Properties</h6>
+        <div class="mt-4"><a class="text-decoration-none text-dark">Buy</a></div>
+        <div class="mt-2"><a class="text-decoration-none text-dark">Sell</a></div>
+        <div class="mt-2"><a class="text-decoration-none text-dark">Rent</a></div>
+      </div>
+
+      <div class="col-lg-2 col-md-4 col-6 mt-5">
+        <h6>Off Plan</h6>
+        <div class="mt-4"><a class="text-decoration-none text-dark">Emaar</a></div>
+        <div class="mt-2"><a class="text-decoration-none text-dark">Shobha Reality</a></div>
+        <div class="mt-2"><a class="text-decoration-none text-dark">Danube</a></div>
+        <div class="mt-2"><a class="text-decoration-none text-dark">Ellington</a></div>
+        <div class="mt-2"><a class="text-decoration-none text-dark">Iman</a></div>
+        <div class="mt-2"><a class="text-decoration-none text-dark">Omniyat</a></div>
+        <div class="mt-2"><a class="text-decoration-none text-dark">Binghatti</a></div>
+      </div>
+
+      <div class="col-lg-2 col-md-4 col-6 mt-5">
+        <h6>In The News</h6>
+        <div class="mt-4"><a class="text-decoration-none text-dark">Lorem Ipsum</a></div>
+        <div class="mt-2"><a class="text-decoration-none text-dark">Lorem Ipsum</a></div>
+      </div>
+
+      <div class="col-lg-2 col-md-4 col-6 mt-5">
+        <h6>Be a Partner</h6>
+        <div class="mt-4"><a class="text-decoration-none text-dark">Lorem Ipsum</a></div>
+        <div class="mt-2"><a class="text-decoration-none text-dark">Lorem Ipsum</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+  <hr class="mt-3 m-0 p-0" />
+<div class="container">
+  <div class="d-flex align-items-center justify-content-between py-3">
+    <div class="d-flex justify-content-between w-50">
+      <span>Terms & Conditions</span>
+      <span class="px-2">Privacy Policy</span>
+      <span>Cookies Policy</span>
+      <span class="px-2">Sitemap</span>
+    </div>
+
+    <div class="d-flex justify-content-between gap-3">
+      @for (media of socialMedia; track $index) {
+        <div class ="socialIcon">
+           <a class="text-decoration-none text-white" [href]="media.link">
+            <i [class]="media.logo"></i>
+           </a>
+        </div>
+      }
+    </div>
+  </div>
+</div>

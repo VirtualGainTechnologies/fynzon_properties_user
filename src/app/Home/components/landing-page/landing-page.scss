@@ -1,0 +1,309 @@
+.hero-image {
+  opacity: 0.5;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.hero-text {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-group {
+  width: 650px;
+  height: 40px;
+}
+
+.searchInput {
+  width: 750px;
+}
+
+.developer-section {
+  height: 380px;
+}
+
+.dev-logo {
+  height: 40px;
+  margin-left: 70px;
+}
+
+.dev-arrow {
+  width: 25px;
+}
+.carousel-control-prev {
+  left: -50px;
+}
+
+.carousel-control-next {
+  right: -50px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(0.5);
+}
+
+.clientReview-section {
+  height: 750px;
+}
+
+.carousel-controls-bottom {
+  top: 400px;
+  right: 20px;
+  gap: 12px;
+  z-index: 10;
+}
+
+.bottom-arrow {
+  width: 40px;
+  height: 40px;
+  background: rgba(87, 4, 0, 0.46);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.bottom-arrow .carousel-control-prev-icon,
+.bottom-arrow .carousel-control-next-icon {
+  filter: invert(0);
+  width: 16px;
+  height: 16px;
+}
+
+.clientReview-card {
+  background: #1a1a1a;
+  border-radius: 16px;
+  width: 400px;
+  min-height: 350px;
+}
+
+.text-grey {
+  color: #c9c9c9;
+}
+
+.profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.custom-indicators {
+  bottom: 50px;
+  left: -170px;
+}
+
+.custom-indicators button {
+  width: 35px;
+  height: 4px;
+  background-color: #d96a4c;
+  border: none;
+  margin-right: 6px;
+}
+
+.custom-indicators .active {
+  background-color: #8c0600;
+}
+
+.investment-section {
+  height: 650px;
+}
+
+.investment-image {
+  opacity: 0.5;
+}
+
+.investment-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    100% 490.79% at 0% 50%,
+    #000000 0%,
+    rgba(17, 17, 17, 0.7) 57.46%,
+    rgba(102, 102, 102, 0.27) 100%
+  );
+  z-index: 1;
+}
+
+.investment-text {
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-request {
+  background-color: #8c0600;
+}
+
+.choose-section .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(140, 6, 0, 0.8);
+  opacity: 0.85;
+  z-index: 2;
+}
+
+.choose-section .content-area {
+  position: relative;
+  z-index: 3;
+}
+
+.contactUsCustom-input {
+  width: 400px;
+  padding: 15px;
+  margin-left: 80px;
+}
+
+.noShadow {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+}
+
+.phoneField {
+  margin-left: 70px;
+}
+
+.contactUs-input-wrapper {
+  width: 300px;
+}
+
+.contactUsCustom-input .form-control,
+.contactUsCustom-input .input-group-text {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  height: 40px;
+}
+
+.contactUsCustom-input .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.contact-btn {
+  background: white;
+  color: #8b0000;
+  border-radius: 15px;
+  margin-inline: 95px;
+  width: 370px;
+}
+
+.modal-content {
+  background-color: rgba(45, 3, 1, 1);
+}
+
+.form-label {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.form-label span {
+  color: #ff4d4d;
+}
+
+.custom-input {
+  border-radius: 15px;
+  padding: 14px 18px;
+  border: none;
+  font-size: 14px;
+}
+
+.custom-input::placeholder {
+  color: #999;
+}
+
+.submit-btn {
+  background: #8c0600;
+  color: #fff;
+  border-radius: 15px;
+  padding: 14px;
+  font-weight: 500;
+  border: none;
+}
+
+.searchInput {
+  height: 45px;
+}
+
+.searchInput .input-group-text {
+  background: white;
+}
+
+.btn-search {
+  height: 45px;
+  width: 120px;
+  background: #8b0000;
+  color: #fff;
+}
+
+.property-dropdown {
+  width: 160px;
+  box-shadow: none;
+  color: #000;
+}
+
+.left-addon .innerText {
+  left: 0px;
+  padding: 6px 10px 15px 15px;
+  cursor: pointer;
+  color: black;
+}
+
+::ng-deep .innerText .ipv_selected-item {
+  border: none;
+  background-color: white;
+  margin-top: -2px;
+}
+
+::ng-deep .innerText .ipv_selected-item:hover {
+  box-shadow: none;
+  border: none;
+  background-color: white;
+}
+
+::ng-deep .ipv_selected-item {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  margin-top: -2px;
+  &:hover,
+  &:focus {
+    box-shadow: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.5) !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 5px;
+  }
+}
+
+::ng-deep .ipv_country-list {
+  color: black !important;
+  background-color: white;
+  min-width: 50% !important;
+}
+
+::ng-deep .ipv_search_box {
+  display: none;
+}
+
+.left-addon input {
+  padding-left: 125px;
+}
+
+@media (min-width: 1200px) {
+  .h-lg-100 {
+    height: 100%;
+  }
+}
