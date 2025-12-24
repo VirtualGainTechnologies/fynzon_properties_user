@@ -212,6 +212,7 @@ export class LandingPage implements OnInit {
           horizontalPosition: 'end',
         });
         this.closeButton.nativeElement.click();
+        window.scrollTo(0, 0);
         this.selectedCountryCode = '+91';
         this.meetingForm.reset();
         this.cdr.detectChanges();

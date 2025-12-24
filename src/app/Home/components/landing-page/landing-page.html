@@ -92,17 +92,17 @@
 
 <section class="choose-section position-relative">
 
-  <div>
+  <!-- <div>
     <img [src]="whyChooseUsImg" class="img-fluid w-100 investment-image" alt="Landing_image" height="684px">
-  </div>
+  </div> -->
 
 
   <div class="overlay">
-    <div class="container position-relative content-area">
+    <div class="position-relative content-area">
       <h2 class="text-center text-white fw-bold my-5">Why Choose Us?</h2>
 
       <div class="row text-white p-4">
-        <div class="col-md-3 mb-5">
+        <div class="col-lg-3 col-md-4 mb-5">
           <h5 class="fw-bold">Seamless Access Across Dubai:</h5>
           <ul>
             <li>Connected to highways, metro lines & key landmarks.</li>
@@ -119,7 +119,7 @@
         </div>
 
 
-        <div class="col-md-6 mb-2 mt-3 pt-4 text-center">
+        <div class="col-lg-6 col-md-8 mb-2 mt-3 pt-3 text-center">
           <h4 class="fw-bold text-center">Contact us</h4>
 
           <form class="mt-1 px-4" [formGroup]="contactForm" (ngSubmit)="submitContactForm()">
@@ -242,7 +242,7 @@
 
             <!-- Submit -->
             @if(!loader()){
-            <button type="submit" [disabled]="contactForm.invalid" class=" btn contact-btn  px-5 py-2 mt-3">
+            <button type="submit" [disabled]="contactForm.invalid" class=" btn contact-btn py-2 mt-3">
               <i class="bi bi-telephone me-2"></i> Contact us
             </button>
             }@else {
@@ -257,7 +257,7 @@
         </div>
 
 
-        <div class="col-md-3 mb-5">
+        <div class="col-lg-3 col-md-4 mb-5">
           <h5 class="fw-bold">Future-Ready Living Spaces</h5>
           <ul>
             <li>Smart-home technology & modern infrastructure.</li>
@@ -300,9 +300,9 @@
 </section>
 
 
-<div class="investment-section position-relative overflow-hidden">
-  <img [src]="investmentImg" class="img-fluid w-100 investment-image" alt="Landing_image" height="684px">
-  <div class="investment-text position-absolute text-center text-light z-2">
+<div class="investment-section position-relative overflow-hidden w-100">
+  <img [src]="investmentImg" class="img-fluid w-100 investment-image" alt="Landing_image" height="684">
+  <div class="investment-text position-absolute text-light z-2">
     <h1 class="text-start">Your Dubai Investment</h1>
     <h1 class="text-start">Starts Here</h1>
     <p class="text-start">Explore high-growth communities, transparent pricing insights, and expert-backed
