@@ -1,9 +1,11 @@
 import {
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ElementRef,
   inject,
   OnInit,
+  PLATFORM_ID,
   signal,
   ViewChild,
 } from '@angular/core';
@@ -15,7 +17,7 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ContactUsService } from '../../services/landing.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PhoneNumberUtil } from 'google-libphonenumber';
@@ -42,7 +44,7 @@ import { Carousel } from '../client-review-carousel/carousel';
   templateUrl: './landing-page.html',
   styleUrls: ['./landing-page.scss'],
 })
-export class LandingPage implements OnInit {
+export class LandingPage implements OnInit,AfterViewInit{
   @ViewChild('openMeeting') requestMeetingBtn!: ElementRef;
   @ViewChild('closeBtn') closeButton!: ElementRef;
 
@@ -150,7 +152,7 @@ export class LandingPage implements OnInit {
   private snackBar = inject(MatSnackBar);
   private cdr = inject(ChangeDetectorRef);
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
     const date = new Date();
@@ -319,4 +321,26 @@ export class LandingPage implements OnInit {
     control.setValidators([Validators.required, dynamicValidator]);
     control.updateValueAndValidity();
   }
+
+ async ngAfterViewInit(): Promise<void> {
+
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    
+    const { Modal } = await import('bootstrap');
+
+    const modalEl = document.getElementById('welcomeModal');
+
+    if (modalEl) {
+      const modal = new Modal(modalEl, {
+        backdrop: 'static',
+        keyboard: false
+      });
+
+      modal.show();
+    }
+  }
 }
+
