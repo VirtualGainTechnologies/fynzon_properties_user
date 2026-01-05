@@ -14,4 +14,14 @@ export class Header {
   requestForMeeting() {
     this.requestMeeting.emit('');
   }
+isMenuOpen = false;
+
+toggleMenu() {
+  this.isMenuOpen = !this.isMenuOpen;
+}
+
+closeMenu() {
+  this.isMenuOpen = false;
+}
+
 }

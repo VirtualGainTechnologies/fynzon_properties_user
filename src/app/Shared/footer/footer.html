@@ -1,4 +1,4 @@
-<div class="container-fluid m-0">
+<div class="container-fluid m-0 footer">
   <div class="container">
     <div class="row">
       <div class="col-lg-3 col-md-4 col-12 mt-4">
@@ -14,13 +14,13 @@
         <div class="mt-4">
           <p class="d-flex align-items-center">
             <i class="bi bi-envelope-fill me-2 iconBgColor roundedIcon text-light"></i>
-            <a class="text-decoration-none text-dark" href="mailto:gm@fynzonproperties.ae">
-              gm&#64;fynzonproperties.ae
+            <a class="text-decoration-none text-dark" href="mailto:admin@fynzonproperties.ae ">
+              admin&#64;fynzonproperties.ae
             </a>
           </p>
           <p class="d-flex align-items-center">
             <i class="bi bi-telephone-fill me-2 iconBgColor roundedIcon text-light"></i>
-            <a class="text-decoration-none text-dark" href="tel:+971 58 157 7284">+971 58 157 7284</a>
+            <a class="text-decoration-none text-dark" href="tel:+971 55 350 9300">+971 55 350 9300</a>
           </p>
         </div>
 
@@ -40,7 +40,7 @@
       <div class="col-lg-2 col-md-4 col-6 mt-5">
         <h6>Off Plan</h6>
         <div class="mt-4"><a class="text-decoration-none text-dark">Emaar</a></div>
-        <div class="mt-2"><a class="text-decoration-none text-dark">Shobha Reality</a></div>
+        <div class="mt-2"><a class="text-decoration-none text-dark">Sobha Reality</a></div>
         <div class="mt-2"><a class="text-decoration-none text-dark">Danube</a></div>
         <div class="mt-2"><a class="text-decoration-none text-dark">Ellington</a></div>
         <div class="mt-2"><a class="text-decoration-none text-dark">Iman</a></div>
@@ -62,23 +62,23 @@
     </div>
   </div>
 </div>
-  <hr class="mt-3 m-0 p-0" />
+<hr class="mt-3 m-0 p-0" />
 <div class="container">
-  <div class="d-flex align-items-center justify-content-between py-3">
-    <div class="d-flex justify-content-between w-50">
-      <span>Terms & Conditions</span>
-      <span class="px-2">Privacy Policy</span>
-      <span>Cookies Policy</span>
-      <span class="px-2">Sitemap</span>
+  <div class="row">
+    <div class="row col-12 col-md-8 my-4 mx-0">
+      <div class="col-6 col-md-3">Terms & Conditions</div>
+      <div class="col-6 col-md-3">Privacy Policy</div>
+      <div class="col-6 col-md-3">Cookies Policy</div>
+      <div class="col-6 col-md-3">Sitemap</div>
     </div>
 
-    <div class="d-flex justify-content-between gap-3">
+    <div class="col-12 col-md-4 my-md-2 d-flex justify-content-start justify-content-md-evenly gap-4 ps-4 py-2">
       @for (media of socialMedia; track $index) {
-        <div class ="socialIcon">
-           <a class="text-decoration-none text-white" [href]="media.link">
-            <i [class]="media.logo"></i>
-           </a>
-        </div>
+      <div class="socialIcon">
+        <a class="text-decoration-none text-white" [href]="media.link">
+          <i [class]="media.logo"></i>
+        </a>
+      </div>
       }
     </div>
   </div>

@@ -1,5 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostBinding, Input, ViewChild } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import {
+  Component,
+  ElementRef,
+  HostBinding,
+  Input,
+  ViewChild,
+  PLATFORM_ID,
+  Inject,
+} from '@angular/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
@@ -13,12 +21,8 @@ export class Carousel {
   @Input() data!: Array<any>;
   @Input() clientReview!: boolean;
   @ViewChild('carouselContainer') carouselContainer!: ElementRef;
-  scrollAmount = 380;
+  scrollAmount = 350;
   carouselData: any = [];
-
-  //dependancies
-
-  constructor() {}
 
   ngOnInit(): void {
     this.carouselData = this.data;

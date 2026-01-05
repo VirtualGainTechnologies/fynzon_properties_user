@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  Inject,
   inject,
   OnInit,
   PLATFORM_ID,
@@ -17,6 +18,10 @@ import {
   AbstractControl,
 } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ContactUsService } from '../../services/landing.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -40,23 +45,30 @@ import { Carousel } from '../client-review-carousel/carousel';
     CommonModule,
     NgxCountriesDropdownModule,
     Carousel,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
+    FormsModule,
   ],
   templateUrl: './landing-page.html',
   styleUrls: ['./landing-page.scss'],
 })
-export class LandingPage implements OnInit,AfterViewInit{
+export class LandingPage implements OnInit {
   @ViewChild('openMeeting') requestMeetingBtn!: ElementRef;
   @ViewChild('closeBtn') closeButton!: ElementRef;
-
+  @ViewChild('contactUsModalBtn') contactUsModalBtn!: ElementRef;
+  disableSelect = false;
   loader = signal<boolean>(false);
   landingImg: string = './assets/images/landing_img.jpg';
-  iman_logo: string = './assets/images/iman_logo.png';
-  binghatti_logo: string = './assets/images/bingatti_logo.png';
-  emaar_logo: string = './assets/images/emaar_logo.png';
-  omniya_logo: string = './assets/images/omniya_logo.png';
-  AshwinImg: string = './assets/images/Ashwin Arora_img.png';
-  YashImg: string = './assets/images/Yash Kotriwal_img.png';
-  JatinImg: string = './assets/images/Jatin Lokhndwala_img.png';
+  iman_logo: string = './assets/images/iman_logo.svg';
+  binghatti_logo: string = './assets/images/binghatti_logo.svg';
+  emaar_logo: string = './assets/images/emaar_logo.svg';
+  omniyat_logo: string = './assets/images/omniyat_logo.svg';
+  sobha_logo: string = './assets/images/sobha_logo.svg';
+  damac_logo: string = './assets/images/damac_logo.svg';
+  danube_logo: string = './assets/images/danube_property_logo.svg';
+  dubai_properties_logo: string = './assets/images/dubai_properties_logo.svg';
+  nakeel_logo: string = './assets/images/nak_logo.svg';
   investmentImg: string = './assets/images/Invest in Dubai 1.png';
   whyChooseUsImg: string = './assets/images/Why Choose Us 1.png';
 
@@ -74,44 +86,45 @@ export class LandingPage implements OnInit,AfterViewInit{
 
   selectedPropertyType = 'Property type';
 
-  developerSlides = [
-    [this.iman_logo, this.binghatti_logo, this.emaar_logo, this.omniya_logo],
-    [this.emaar_logo, this.omniya_logo, this.iman_logo, this.binghatti_logo],
-  ];
+  // developerSlides = [
+  //   [this.iman_logo, this.binghatti_logo, this.emaar_logo, this.omniyat_logo],
+  //   [this.sobha_logo, this.damac_logo,this.danube_logo,this.dubai_properties_logo,this.nakeel_logo],
+  // ];
 
   carouselData = [
     this.iman_logo,
     this.binghatti_logo,
     this.emaar_logo,
-    this.omniya_logo,
-    this.emaar_logo,
-    this.omniya_logo,
-    this.iman_logo,
-    this.binghatti_logo,
+    this.omniyat_logo,
+    this.sobha_logo,
+    this.damac_logo,
+    this.danube_logo,
+    this.dubai_properties_logo,
+    this.nakeel_logo,
   ];
 
   customerReviewData = [
     {
-      profile_img: this.AshwinImg,
+      profile_img: 'bi-person-fill',
       name: 'Ashwin Arora',
       designation: 'Finance Manager, DMCC Branch',
       review: `I just spent some time at this super cute spot that totally blew me away.The vibe was so cozy, and the staff were really friendly. Plus, it was in a great spot, super close to all the fun stuff. I definitely recommend checking it out if you're looking for a fun getaway!`,
     },
 
     {
-      profile_img: this.YashImg,
+      profile_img: 'bi-person-fill',
       name: 'Yash Kotriwal',
       designation: 'Finance Manager, DMCC Branch',
       review: `I recently stayed at a charming property that exceeded my expectations. The cozy ambiance and welcoming staff made it special. Its perfect location offers easy access to local attractions. I highly recommend it for a delightful getaway!`,
     },
     {
-      profile_img: this.JatinImg,
+      profile_img: 'bi-person-fill',
       name: 'Jatin Lokhandwala',
       designation: 'CFO, Lokhandwala Properties',
       review: `I recently stayed at a charming little property that exceeded my expectations. The ambiance was cozy, and the staff were incredibly welcoming. The location was perfect, allowing easy access to local attractions. I highly recommend this place for anyone looking for a delightful getaway!`,
     },
     {
-      profile_img: this.AshwinImg,
+      profile_img: 'bi-person-fill',
       name: 'Ashwin Arora',
       designation: 'Finance Manager, DMCC Branch',
       review: `I just spent some time at this super cute spot that totally blew me away.The vibe was so cozy, and the staff were really friendly. Plus, it was in a great spot, super close to all the fun stuff. I definitely recommend checking it out if you're looking for a fun getaway!`,
@@ -119,8 +132,8 @@ export class LandingPage implements OnInit,AfterViewInit{
   ];
 
   todaysDate!: string;
-  selectedPhoneCode: string = '+91';
-  selectedCountryCode: string = 'IN';
+  selectedPhoneCode: string = '+971';
+  selectedCountryCode: string = 'AE';
   selectedPhoneConfig: IConfig = {
     hideCode: true,
     hideName: true,
@@ -155,10 +168,18 @@ export class LandingPage implements OnInit,AfterViewInit{
   constructor(private fb: FormBuilder, @Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
-    const date = new Date();
-    this.todaysDate = date.toISOString().split('T')[0];
     this.createMeetingForm();
     this.createConatctForm();
+    const date = new Date();
+    this.todaysDate = date.toISOString().split('T')[0];
+  }
+
+  ngAfterViewInit() {
+    this.contactUsModalBtn.nativeElement.click();
+  }
+
+  onClickedDropdown() {
+    console.log('Dropdown clikced!');
   }
 
   createMeetingForm() {
@@ -250,7 +271,7 @@ export class LandingPage implements OnInit,AfterViewInit{
           verticalPosition: 'top',
           horizontalPosition: 'end',
         });
-        this.selectedCountryCode = '+91';
+        this.selectedCountryCode = 'AE';
         this.contactForm.reset();
       },
       error: (err: HttpErrorResponse) => {
@@ -322,25 +343,7 @@ export class LandingPage implements OnInit,AfterViewInit{
     control.updateValueAndValidity();
   }
 
- async ngAfterViewInit(): Promise<void> {
-
-    if (!isPlatformBrowser(this.platformId)) {
-      return;
-    }
-
-    
-    const { Modal } = await import('bootstrap');
-
-    const modalEl = document.getElementById('welcomeModal');
-
-    if (modalEl) {
-      const modal = new Modal(modalEl, {
-        backdrop: 'static',
-        keyboard: false
-      });
-
-      modal.show();
-    }
+  onResetContactUSForm() {
+    this.contactForm.markAsUntouched();
   }
 }
-

@@ -24,6 +24,10 @@
   height: 40px;
 }
 
+.button-Grp-Text {
+  font-size: 15px;
+}
+
 .searchInput {
   width: 750px;
 }
@@ -55,7 +59,7 @@
 }
 
 .clientReview-section {
-  height: 750px;
+  min-height: 750px;
 }
 
 .carousel-controls-bottom {
@@ -95,6 +99,9 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .custom-indicators {
@@ -110,12 +117,21 @@
   margin-right: 6px;
 }
 
+.custom-margin {
+  margin-left: 80px;
+}
+
 .custom-indicators .active {
   background-color: #8c0600;
 }
 
 .investment-section {
-  min-height: 50vh;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('/assets/images/Invest in Dubai 1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .investment-image {
@@ -144,6 +160,10 @@
   transform: translate(-50%, -50%);
 }
 
+.investmentBannerText {
+  font-size: 60px;
+}
+
 .btn-request {
   background-color: #8c0600;
 }
@@ -161,8 +181,7 @@
 .choose-section .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(140, 6, 0, 0.9);
-  opacity: 0.75;
+  background: rgba(140, 6, 0, 0.8);
   z-index: 2;
 }
 
@@ -176,19 +195,21 @@
   width: 400px;
   padding: 15px;
   margin-left: 80px;
+  font-size: 12px;
 }
 
 .noShadow {
   box-shadow: none !important;
   -webkit-box-shadow: none !important;
+  font-size: 13px;
 }
 
-.phoneField {
-  margin-left: 70px;
-}
+// .phoneField {
+//   margin-left: 70px;
+// }
 
 .contactUs-input-wrapper {
-  width: 300px;
+  width: 340px;
 }
 
 .contactUsCustom-input {
@@ -197,22 +218,22 @@
 
 .contactUsCustom-input .form-control,
 .contactUsCustom-input .input-group-text {
-  background: rgba(255, 255, 255, 0.1);
+  background-color: #570400 !important;
   border: none;
   color: white;
   height: 40px;
 }
 
 .contactUsCustom-input .form-control::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: #fff;
 }
 
 .contact-btn {
   background: white;
   color: #8b0000;
-  border-radius: 15px;
-  margin-inline: 95px;
-  width: 370px;
+  border-radius: 8px;
+  margin-right: 15px;
+  width: 375px;
 }
 
 .modal-content {
@@ -290,16 +311,28 @@
 
 ::ng-deep .ipv_selected-item {
   border: none;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.5);
+  background-color: #570400 !important;
+  color: #fff;
   border-radius: 5px;
   margin-top: -2px;
   &:hover,
   &:focus {
     box-shadow: none;
     border: none;
-    color: rgba(255, 255, 255, 0.5) !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 5px;
+  }
+}
+
+::ng-deep .phoneCodeLightBg .ipv_selected-item {
+  border: none;
+  background-color: #fff !important;
+  color: #999;
+  border-radius: 5px;
+  margin-top: -2px;
+  &:hover,
+  &:focus {
+    box-shadow: none;
+    border: none;
     border-radius: 5px;
   }
 }
@@ -308,6 +341,7 @@
   color: black !important;
   background-color: white;
   min-width: 50% !important;
+  z-index: 1000;
 }
 
 ::ng-deep .ipv_search_box {
@@ -316,6 +350,15 @@
 
 .left-addon input {
   padding-left: 125px;
+}
+
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050;
+  background-color: #fff;
 }
 
 @media (min-width: 1200px) {
@@ -332,16 +375,94 @@
   .choose-section {
     height: 120vh !important;
   }
+
+  .investment-text {
+    top: 50%;
+    left: 30%;
+  }
 }
 
-@media screen and (max-width: 450) {
+// mobile
+@media (max-width: 450px) {
+  .hero-section {
+    height: 400px;
+  }
+
+  .headline {
+    font-size: 20px !important;
+  }
+  .btn-group {
+    width: 350px;
+  }
+
+  .button-Grp-Text {
+    font-size: 13px;
+  }
+
+  .searchInput {
+    width: 350px;
+  }
+  .contactUsCustom-input {
+    margin-left: 0px !important;
+  }
+
+  .choose-section {
+    height: 880px !important;
+  }
+
+  .investment-section {
+    min-height: 70vh;
+  }
+
+  .investment-text {
+    top: 50%;
+    left: 50%;
+  }
+
+  .investmentBannerText {
+    font-size: 40px;
+  }
+
+  .investment-text .h1 {
+    font-size: 10px;
+  }
+
+  .contact-btn {
+    margin-inline: 40px;
+    width: 300px;
+  }
+
+  .btn-search {
+    width: 80px;
+  }
+
+  .btn-request {
+    font-size: 12px;
+    width: 160px;
+  }
+
+  .property-dropdown {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline-start: 20px;
+  }
 }
 
+// large mobile screens
 @media screen and (min-width: 450px) and (max-width: 768px) {
 }
 
-@media screen and (min-width: 768px) and (max-width: 991px) {
+//tabs
+// @media screen and (min-width: 768px) and (max-width: 991px) {
+// }
+
+//mini laptop,
+@media screen and (min-width: 768px) and (max-width: 1400px) {
+  .contact-btn {
+    margin-left: 40px;
+    width: 370px;
+  }
 }
 
-@media screen and (min-width: 991px) and (min-width: 1200px) {
-}
+//desktop and large screen

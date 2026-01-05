@@ -1,15 +1,15 @@
-<app-header (requestMeeting)="openMeetingForm()"></app-header>
+<app-header class="fixed-navbar" (requestMeeting)="openMeetingForm()"></app-header>
 
 <div class="hero-section position-relative overflow-hidden h-lg-100">
   <img [src]="landingImg" class="img-fluid w-100 hero-image" alt="Landing_image" height="684" width="100">
   <div class="hero-text position-absolute text-center text-light z-2">
-    <h1>Your Trusted Partner for Dubai</h1>
-    <h1>Real Estate Solutions</h1>
-    <div class=" p-4">
+    <h1 class="headline">Your Trusted Partner for Dubai</h1>
+    <h1 class="headline">Real Estate Solutions</h1>
+    <div class="p-md-4 p-2">
 
-      <div class="btn-group ms-5 d-flex justify-content-center" role="group">
+      <div class="ms-md-5 btn-group d-flex justify-content-center" role="group">
         @for (category of categories; track category) {
-        <button class="btn btn-light" [class.rounded-start-pill]="category === 'Any'"
+        <button class="btn btn-light button-Grp-Text" [class.rounded-start-pill]="category === 'Any'"
           [class.rounded-end-pill]="category === 'Commercial'" [class.border-start]="category !== 'Any'"
           [class.active]="selectedCategory === category" (click)="selectCategory(category)">
           {{ category }}
@@ -17,13 +17,37 @@
         }
       </div>
 
+      <div class="dropdown d-block d-md-none mb-2 mt-4">
+        <button class="btn dropdown-toggle button-Grp-Text w-100 property-dropdown border bg-light rounded-5"
+          type="button" data-bs-toggle="dropdown">
+          {{ selectedPropertyType }}
+        </button>
+
+        <ul class="dropdown-menu w-100 button-Grp-Text">
+          @for (type of propertyTypes; track type) {
+          <li>
+            <span class="dropdown-item" (click)="selectPropertyType(type)">
+              {{ type }}
+            </span>
+          </li>
+          }
+        </ul>
+      </div>
+
+
       <div class="input-group searchInput mt-4">
+
         <span class="input-group-text rounded-start-pill bg-white border-end-0">
           <i class="bi bi-search text-muted"></i>
         </span>
-        <input type="text" class="form-control shadow-none border-0" placeholder="City, community or building">
 
-        <button class="btn dropdown-toggle property-dropdown border bg-light" type="button" data-bs-toggle="dropdown">
+
+        <input type="text" class="form-control shadow-none border-0 button-Grp-Text"
+          placeholder="City, community or building">
+
+
+        <button class="btn dropdown-toggle property-dropdown border bg-light d-none d-md-block" type="button"
+          data-bs-toggle="dropdown">
           {{ selectedPropertyType }}
         </button>
 
@@ -36,11 +60,39 @@
           </li>
           }
         </ul>
+
+
+        <button class="btn btn-search border-0 rounded-end-pill button-Grp-Text" type="button">
+          <i class="fa fa-search fa-fw"></i> Search
+        </button>
+      </div>
+
+      <!-- <div class="input-group searchInput mt-4">
+        <span class="input-group-text rounded-start-pill bg-white border-end-0">
+          <i class="bi bi-search text-muted"></i>
+        </span>
+        <input type="text" class="form-control shadow-none border-0" placeholder="City, community or building">
+
+        <button class="desktopView btn dropdown-toggle property-dropdown border bg-light" type="button"
+          data-bs-toggle="dropdown">
+          {{ selectedPropertyType }}
+        </button>
+
+        <ul class="dropdown-menu">
+          @for (type of propertyTypes; track type) {
+          <li>
+            <span class="dropdown-item" (click)="selectPropertyType(type)">
+              {{ type }}
+            </span>
+          </li>
+          }
+        </ul>
+
         <span class="input-group-btn">
           <button class="btn btn-search border-0 rounded-end-pill" type="button"><i class="fa fa-search fa-fw"></i>
             Search</button>
         </span>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -91,27 +143,21 @@
 
 
 <section class="choose-section position-relative">
-
-  <!-- <div>
-    <img [src]="whyChooseUsImg" class="img-fluid w-100 investment-image" alt="Landing_image" height="684px">
-  </div> -->
-
-
   <div class="overlay">
     <div class="position-relative content-area">
-      <h2 class="text-center text-white fw-bold my-5">Why Choose Us?</h2>
+      <h2 class="text-center text-white fw-bold my-md-5 my-3">Why Choose Us?</h2>
 
-      <div class="row text-white p-4">
-        <div class="col-lg-3 col-md-4 mb-5">
-          <h5 class="fw-bold">Seamless Access Across Dubai:</h5>
-          <ul>
+      <div class="row text-white px-4 py-2 ">
+        <div class="col-lg-3 col-12 text-lg-start text-center">
+          <h5 class="fw-bold">Seamless Access Across Dubai</h5>
+          <ul class="text-start">
             <li>Connected to highways, metro lines & key landmarks.</li>
             <li>Reduces commute time & increases tenant appeal.</li>
             <li>Strong investment returns.</li>
           </ul>
 
-          <h5 class="fw-bold mt-5 pt-5">Luxury Ready-to-Move Homes</h5>
-          <ul>
+          <h5 class="fw-bold mt-md-5 pt-md-5 mt-4">Luxury Ready-to-Move Homes</h5>
+          <ul class="text-start">
             <li>Fully furnished with premium finishes.</li>
             <li>Ideal for immediate rental income.</li>
             <li>Attractive to short & long-term tenants.</li>
@@ -119,7 +165,7 @@
         </div>
 
 
-        <div class="col-lg-6 col-md-8 mb-2 mt-3 pt-3 text-center">
+        <div class="col-lg-6 col-12 mb-2 mt-3 pt-3 text-center d-none d-lg-block">
           <h4 class="fw-bold text-center">Contact us</h4>
 
           <form class="mt-1 px-4" [formGroup]="contactForm" (ngSubmit)="submitContactForm()">
@@ -141,26 +187,25 @@
                   }">
               </div>
 
-              @if (
-              (contactFormControls["name"].dirty ||
-              contactFormControls["name"].touched) &&
-              contactFormControls["name"].invalid
-              ) {
-              @if (contactFormControls["name"].hasError("required")) {
-              <small class="text-light ms-2">
-                Name is required!
-              </small>
-              }
 
-              @if (contactFormControls["name"].hasError("minlength")) {
-              <small class="text-light ms-2">
-                Name must be at least 2 characters long!
-              </small>
-              }
-              }
 
             </div>
-            <!-- Email -->
+            @if (
+            (contactFormControls["name"].dirty ||
+            contactFormControls["name"].touched) &&
+            contactFormControls["name"].invalid
+            ) {
+            <div class="text-light text-start fs-10 custom-margin px-4">
+              @if (contactFormControls["name"].hasError("required")) {
+
+              Name is required!
+
+              } @if (contactFormControls["name"].hasError("minlength")) {
+              Name must be at least 2 characters long!
+              }
+            </div>
+            }
+
             <div class="contactUs-input-wrapper">
               <div class="input-group contactUsCustom-input">
                 <span class="input-group-text">
@@ -182,20 +227,18 @@
               contactFormControls["email"].touched) &&
               contactFormControls["email"].invalid
               ) {
-              @if (contactFormControls["email"].hasError("required")) {
-              <small class="text-light ms-2">
+              <div class="text-light text-start fs-10 custom-margin px-4">
+                @if (contactFormControls["email"].hasError("required")) {
                 Email is required!
-              </small>
-              }
+                }
 
-              @if (contactFormControls["email"].hasError("email")) {
-              <small class="text-light ms-2">
+                @if (contactFormControls["email"].hasError("email")) {
                 Invalid email!
-              </small>
-              }
+                }
+              </div>
               }
             </div>
-            <!-- PhoneCode -->
+
 
             <div class="input-group contactUsCustom-input">
               <lib-country-list class="CountryDropdown w-100" [selectedCountryConfig]="selectedCountryConfig"
@@ -203,7 +246,7 @@
                 (onCountryChange)="onSelectionCountry($event)"></lib-country-list>
             </div>
 
-            <!-- Phone -->
+
             <div class="contactUs-input-wrapper">
               <div class="input-group contactUsCustom-input">
                 <span class="input-group-text">
@@ -226,47 +269,44 @@
               contactFormControls["phone"].touched) &&
               contactFormControls["phone"].invalid
               ) {
-              @if (contactFormControls["phone"].hasError("required")) {
-              <small class="text-light phoneField">
+              <div class="text-light text-start fs-10 custom-margin px-4">
+                @if (contactFormControls["phone"].hasError("required")) {
                 Phone number is required!
-              </small>
-              }
-              @if (contactFormControls["phone"].hasError('invalidPhone')) {
-              <small class="text-light ms-5">
+                }
+                @if (contactFormControls["phone"].hasError('invalidPhone')) {
                 Invalid Phone number!
-              </small>
-              }
+                }
+              </div>
               }
             </div>
 
 
-            <!-- Submit -->
+
             @if(!loader()){
-            <button type="submit" [disabled]="contactForm.invalid" class=" btn contact-btn py-2 mt-3">
+            <button type="submit" [disabled]="contactForm.invalid" class="btn contact-btn py-2 mt-3 cursor">
               <i class="bi bi-telephone me-2"></i> Contact us
             </button>
             }@else {
-            <button type="button" class=" btn contact-btn  px-5 py-2 mt-3">
+            <button type="button" class=" btn contact-btn px-5 py-2 mt-3 cursor">
               <div class="spinner-border spinner-border-sm" role="status"></div>
             </button>
 
             }
-
           </form>
 
         </div>
 
 
-        <div class="col-lg-3 col-md-4 mb-5">
+        <div class="col-lg-3 col-12 mb-5 mt-3 mt-md-1 text-lg-start text-center">
           <h5 class="fw-bold">Future-Ready Living Spaces</h5>
-          <ul>
+          <ul class="text-start">
             <li>Smart-home technology & modern infrastructure.</li>
             <li>Located in Dubai’s fastest-growing districts.</li>
             <li>Boosts long-term property value.</li>
           </ul>
 
-          <h5 class="fw-bold mt-5 pt-5">Everything You Need Nearby</h5>
-          <ul>
+          <h5 class="fw-bold mt-md-5 pt-md-5 mt-4">Everything You Need Nearby</h5>
+          <ul class="text-start">
             <li>Close to malls, hospitals & lifestyle hubs.</li>
             <li>Effortless day-to-day living.</li>
             <li>Enhances rental demand & appreciation.</li>
@@ -275,7 +315,16 @@
 
       </div>
 
+      <div class="d-block d-lg-none my-2">
+        <button #contactUsModalBtn class="btn contact-btn" type="button" data-bs-toggle="modal"
+          data-bs-target="#contactUsModal">
+          <i class="bi bi-telephone me-2"></i> Contact Us
+        </button>
+      </div>
+
+      <!-- data-bs-toggle="modal" data-bs-target="#contactUsModal" -->
     </div>
+
   </div>
 </section>
 
@@ -301,22 +350,24 @@
 
 
 <div class="investment-section position-relative overflow-hidden w-100">
-  <img [src]="investmentImg" class="img-fluid w-100 investment-image" alt="Landing_image" height="684">
   <div class="investment-text position-absolute text-light z-2">
-    <h1 class="text-start">Your Dubai Investment</h1>
-    <h1 class="text-start">Starts Here</h1>
+    <h1 class="text-start investmentBannerText">Your Dubai Investment</h1>
+    <h1 class="text-start lh-1 investmentBannerText">Starts Here</h1>
     <p class="text-start">Explore high-growth communities, transparent pricing insights, and expert-backed
       <br />opportunities designed to
       maximize your long-term returns.
     </p>
-    <div class="mt-5 text-start">
+    <div class="mt-5 d-flex align-items-center gap-2 flex-nowrap">
       <button #openMeeting class="btn btn-request text-light rounded-3 px-3 py-2" type="button" data-bs-toggle="modal"
         data-bs-target="#requestMeetingModal">
         <i class="bi bi-briefcase me-2"></i>Request of Meeting
       </button>
-      <span class="ms-3">
-        Or <a href="tel:+971 58 157 7284" class="text-decoration-none text-white"><i
-            class="bi bi-telephone-fill ms-3 me-1"></i> +971 58 157 7284 </a>
+
+      <span class="text-white text-nowrap">
+        Or
+        <a href="tel:+971553509300" class="text-decoration-none text-white ms-1">
+          <i class="bi bi-telephone-fill me-1"></i>+971 55 350 9300
+        </a>
       </span>
     </div>
   </div>
@@ -330,7 +381,7 @@
 
 <!-- Modal -->
 <div class="modal" id="requestMeetingModal" tabindex="-1" data-bs-backdrop="static">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content text-white">
       <div class="modal-header border-0">
         <h5 class="modal-title w-100 text-center">Reach out to us Today!</h5>
@@ -410,7 +461,7 @@
             <div class="mb-3">
               <label class="form-label">Phone No.<span>*</span></label>
               <div class="inner-addon left-addon">
-                <div class="innerText">
+                <div class="innerText phoneCodeLightBg">
                   <lib-country-list class="CountryDropdown" [selectedCountryConfig]="selectedPhoneConfig"
                     [countryListConfig]="phoneListConfig" [selectedCountryCode]="selectedCountryCode"
                     (onCountryChange)="onCountryChange($event)"></lib-country-list>
@@ -481,6 +532,146 @@
 
             <!-- Submit -->
             @if(!loader()){<button type="submit" class="btn submit-btn w-100 mt-4" [disabled]="meetingForm.invalid">
+              Submit
+            </button>
+            }
+            @else {
+            <button type="button" class="btn submit-btn w-100 mt-4">
+              <div class="spinner-border spinner-border-sm" role="status"></div>
+            </button>
+
+            }
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Contact Us Modal -->
+<div class="modal fade" id="contactUsModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-white">
+      <div class="modal-header border-0">
+        <h5 class="modal-title w-100 text-center">Contact Us!</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" #closeBtn aria-label="Close"
+          (click)="onResetContactUSForm()"></button>
+      </div>
+      <div class="modal-body">
+
+        <div>
+          <form class="p-3" [formGroup]="contactForm" (ngSubmit)="submitContactForm()">
+
+            <!-- Name -->
+            <div class="mb-3">
+              <label class="form-label">Name<span>*</span></label>
+              <input type="text" class="form-control custom-input" placeholder="Enter name here..."
+                formControlName="name" [ngClass]="{
+                    'is-valid':
+                      contactFormControls['name']?.dirty &&
+                      contactFormControls['name']?.valid,
+                    'is-invalid custom-input-error':
+                      (contactFormControls['name'].dirty ||
+                        contactFormControls['name'].touched) &&
+                      contactFormControls['name'].invalid,
+                  }">
+              @if (
+              (contactFormControls["name"].dirty ||
+              contactFormControls["name"].touched) &&
+              contactFormControls["name"].invalid
+              ) {
+              @if (contactFormControls["name"].hasError("required")) {
+              <div class="text-danger fs-12 ps-1 mt-1">
+                Name is required!
+              </div>
+              }
+
+              @if (contactFormControls["name"].hasError("minlength")) {
+              <div class="text-danger fs-12 ps-1 mt-1">
+                Name must be at least 2 characters long!
+              </div>
+              }
+              }
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label class="form-label">Email<span>*</span></label>
+              <input type="email" class="form-control custom-input" placeholder="Enter email here..."
+                formControlName="email" [ngClass]="{
+                    'is-valid':
+                      contactFormControls['email']?.dirty &&
+                      contactFormControls['email']?.valid,
+                    'is-invalid custom-input-error':
+                      (contactFormControls['email'].dirty ||
+                        contactFormControls['email'].touched) &&
+                      contactFormControls['email'].invalid,
+                  }">
+              @if (
+              (contactFormControls["email"].dirty ||
+              contactFormControls["email"].touched) &&
+              contactFormControls["email"].invalid
+              ) {
+              @if (contactFormControls["email"].hasError("required")) {
+              <div class="text-danger fs-12 ps-1 mt-1">
+                Email is required!
+              </div>
+              }
+
+              @if (contactFormControls["email"].hasError("email")) {
+              <div class="text-danger fs-12 ps-1 mt-1">
+                Invalid email!
+              </div>
+              }
+              }
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-3">
+              <label class="form-label">Phone No.<span>*</span></label>
+              <div class="inner-addon left-addon">
+                <div class="innerText phoneCodeLightBg">
+                  <lib-country-list class="CountryDropdown" [selectedCountryConfig]="selectedPhoneConfig"
+                    [countryListConfig]="phoneListConfig" [selectedCountryCode]="selectedCountryCode"
+                    (onCountryChange)="onSelectionCountry($event)"></lib-country-list>
+
+                </div>
+                <input type="tel" class="form-control custom-input" placeholder="Enter phone number"
+                  formControlName="phone" [ngClass]="{
+                    'is-valid':
+                      contactFormControls['phone']?.dirty &&
+                      contactFormControls['phone']?.valid,
+                    'is-invalid custom-input-error':
+                      (
+                        contactFormControls['phone'].touched) &&
+                      contactFormControls['phone'].invalid,
+                  }">
+              </div>
+              @if (
+              (
+              contactFormControls["phone"].touched) &&
+              contactFormControls["phone"].invalid
+              ) {
+              @if (contactFormControls["phone"].hasError("required")) {
+              <div class="text-danger fs-12 ps-1 mt-1">
+                Phone number is required!
+              </div>
+              }
+              @if (contactFormControls["phone"].hasError('invalidPhone')) {
+              <div class="text-danger fs-12 ps-1 mt-1">
+                Invalid Phone number!
+              </div>
+              }
+              }
+            </div>
+
+
+            <!-- Submit -->
+            @if(!loader()){<button type="submit" class="btn submit-btn w-100 mt-4" [disabled]="contactForm.invalid">
               Submit
             </button>
             }

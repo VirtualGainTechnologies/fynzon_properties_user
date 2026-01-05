@@ -1,14 +1,17 @@
 <div #carouselContainer class="carousel d-flex">
   @for (carouselitem of data; track $index) {
   @if (!clientReview) {
-  <div class="w-300">
-    <img [src]="carouselitem" alt="logo" />
+  <div class="d-flex align-items-center">
+    <img [src]="carouselitem" alt="logo" class="brandLogo" />
   </div>
   }@else {
   <div class="d-flex justify-content-between w-100">
     <div class="clientReview-card p-4 mx-4">
       <div class="d-flex align-items-center mb-4 gap-3">
-        <img [src]="carouselitem.profile_img" class="profile-img me-3">
+
+        <i class="bi profile-img text-light fs-2" [ngClass]="carouselitem.profile_img"></i>
+
+
         <div>
           <h6 class="text-white mb-0 text-start">{{carouselitem.name}}</h6>
           <small class="text-grey">{{carouselitem.designation}}</small>

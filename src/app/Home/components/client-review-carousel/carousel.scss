@@ -10,9 +10,8 @@
   flex-wrap: nowrap;
 }
 
-.w-300 {
-  min-width: 300px;
-  flex-shrink: 0;
+.brandLogo {
+  padding-inline: 20px;
 }
 
 .prev,
@@ -36,11 +35,22 @@
 }
 
 .profile-img {
-  width: 50px;
-  height: 50px;
+  width: 56px;
+  height: 56px;
+  background-color: #8b0000 !important;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .text-grey {
   color: #c9c9c9;
+}
+
+@media (max-width: 450px) {
+  .w-300 {
+    min-width: 400px;
+    flex-shrink: 0;
+  }
 }
